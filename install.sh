@@ -15,11 +15,11 @@ check_os_version() {
         apt update && apt install -y bc
     fi
 
-    if [[ "$os_name" == "ubuntu" && $(echo "$os_version >= 22" | bc) -eq 1 ]] ||
+    if [[ "$os_name" == "ubuntu" && $(echo "$os_version >= 20" | bc) -eq 1 ]] ||
        [[ "$os_name" == "debian" && $(echo "$os_version >= 11" | bc) -eq 1 ]]; then
         return 0
     else
-        echo "This script is only supported on Ubuntu 22+ or Debian 11+."
+        echo "This script is only supported on Ubuntu 20+ or Debian 11+."
         exit 1
     fi
 }
