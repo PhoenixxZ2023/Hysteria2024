@@ -12,7 +12,7 @@ This bash script provides a comprehensive menu-driven interface to manage the Hy
 
 ### Install command :
 ```shell
-bash <(curl https://raw.githubusercontent.com/ReturnFI/Hysteria2/main/install.sh)
+bash <(curl https://raw.githubusercontent.com/PhoenixxZ2023/Hysteria2024/main/install.sh)
 ```
 After installation, simply use the command `hys2` to run the Hysteria2 script.
 
