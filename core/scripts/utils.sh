@@ -39,17 +39,25 @@ version_greater_equal() {
     return 0
 }
 
+check_core_version() {
+    if systemctl is-active --quiet hysteria-server.service; then
+        HCVERSION=$(hysteria version | grep "^Version:" | awk '{print $2}')
+        echo -e "Hysteria2 Core Version: ${cyan}$HCVERSION${NC}"
+    fi
+}
+
 check_version() {
-    local_version=$(cat /etc/hysteria/VERSION)
-    latest_version=$(curl -s https://raw.githubusercontent.com/ReturnFI/Hysteria2/main/VERSION)
+    local_version=$(cat $LOCALVERSION)
+    latest_version=$(curl -s $LATESTVERSION)
+    latest_changelog=$(curl -s $LASTESTCHANGE)
 
     if version_greater_equal "$local_version" "$latest_version"; then
         echo -e "Panel Version: ${cyan}$local_version${NC}"
     else
         echo -e "Panel Version: ${cyan}$local_version${NC}"
         echo -e "Latest Version: ${cyan}$latest_version${NC}"
-        echo -e "${red}Please update your panel.${NC}"
-        echo -e "${cyan}Bug squashing party!${yellow} Update for the best invitation.${NC}"
+        echo -e "${yellow}$latest_version Version Change Log:${NC}"
+        echo -e "${cyan}$latest_changelog ${NC}"
     fi
 }
 
